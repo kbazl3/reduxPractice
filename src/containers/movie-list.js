@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {selectMovie} from '../actions/select-movie';
+import {bindActionCreators} from 'redux';
 
 class MovieList extends Component {
     renderList() {
-        return this.props.movies.map(function(movie) {
+        return this.props.movies.map((movie) => {
             return (
-                <li key={movie.title}>{movie.title}</li>
+                <li
+                    key={movie.title}
+                    onClick={() => this.props.selectMovie(movie)}
+                    >{movie.title}
+                </li>
             )
         })
     }
@@ -22,10 +28,13 @@ class MovieList extends Component {
 }
 
 function mapStateToProps(state) {
-
     return {
         movies: state.movies
     }
 }
 
-export default connect(mapStateToProps)(MovieList)
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({selectMovie: selectMovie}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList)

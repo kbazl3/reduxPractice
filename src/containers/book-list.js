@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'; //glue between react and redux
-import  {selectBook} from '../actions/index.js';
+import {selectBook} from '../actions/index.js';
 import {bindActionCreators} from 'redux'; //takes action object and makes sure it flows through all Reducers
 
 
@@ -28,7 +28,7 @@ class BookList extends Component {
 }
 
 function mapStateToProps(state) {
-    //whatever is returned will show up as props for BookList component
+    //whatever is returned will show up as props for BookList container
     return {
         books: state.books
     }
